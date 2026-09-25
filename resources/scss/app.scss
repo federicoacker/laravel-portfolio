@@ -1,1 +1,16 @@
 @import '~bootstrap/scss/bootstrap';
+
+.card-description{
+    max-height:150px;
+    
+    .card-text{
+        overflow-y:scroll;
+        white-space: wrap;
+        max-height:150px;
+        text-overflow:ellipsis;
+    }
+}
+.card-title,
+.card-subtitle{
+    text-transform: capitalize;
+}

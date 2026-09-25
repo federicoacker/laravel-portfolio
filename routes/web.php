@@ -1,12 +1,13 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+}) -> name('Home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -25,5 +26,8 @@ Route::middleware(['auth', 'verified'])
         Route::get('/', [DashboardController::class, 'index'])
             ->name('dashboard');
     });
+
+Route::resource('projects', ProjectController::class)
+->middleware(['auth', 'verified']) -> name('index', 'Projects');
 
 require __DIR__.'/auth.php';
