@@ -14,7 +14,7 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
-        return view('projects', compact('projects'));
+        return view('Projects.index', compact('projects'));
     }
 
     /**
@@ -36,9 +36,9 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Project $project)
     {
-        //
+        return view('Projects.show', compact('project'));
     }
 
     /**
