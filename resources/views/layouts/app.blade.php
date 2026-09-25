@@ -45,6 +45,7 @@
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item d-flex">
                             <a class="nav-link" href="{{url('/') }}">{{ __('Home') }}</a>
+                            <a class="nav-link" href="{{route("dashboard") }}">{{ __('Dashboard') }}</a>
                             <a class="nav-link" href="{{url('/projects') }}">{{ __('Projects') }}</a>
                         </li>
                     </ul>
