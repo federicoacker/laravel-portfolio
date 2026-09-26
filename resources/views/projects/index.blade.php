@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container py-4">
+    <a class="btn btn-primary my-4" href="{{ route('projects.create') }}">Aggiungi Progetto</a>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 row-gap-4">
         @foreach($projects as $project)
         <div class="col">
