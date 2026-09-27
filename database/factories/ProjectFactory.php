@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,12 +18,14 @@ class ProjectFactory extends Factory
      */
     public function definition(): array
     {
+        $types = Type::all();
         $title = fake()->word();
         return [
             'title' => $title,
             'description' => fake()->realTextBetween(200, 300, 2),
             'creation_date' => fake()->dateTimeBetween('-2 yearss', 'now'),
-            'tag' => $title . " - " . fake()->languageCode()
+            'tag' => $title . " - " . fake()->languageCode(),
+            'type_id' => rand(1, count($types))
         ];
     }
 }
