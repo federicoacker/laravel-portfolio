@@ -14,6 +14,8 @@
             <div class="h3 text-secondary">{{ $project->created_at }}</div>
         </div>
         <hr>
+        <h3>Tipo di progetto: {{ $project->type->name }}</h3>
+        <hr>
         <p>{{ $project->description }}</p>
     </div>
 
