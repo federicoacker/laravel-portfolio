@@ -14,7 +14,9 @@
             <div class="h3 text-secondary">{{ $project->created_at }}</div>
         </div>
         <hr>
-        <h3>{{ $project->type?->name ?? "Non c'è nessun tipo assegnato a questo progetto"}}</h3>
+        <a href="{{ $project->type ? route('types.show', $project->type) : '' }}">
+            <h3>{{ $project->type?->name ?? "Non c'è nessun tipo assegnato a questo progetto"}}</h3>
+        </a>
         <hr>
         <p>{{ $project->description }}</p>
     </div>
@@ -37,7 +39,7 @@
                         @method("DELETE")
                         <input type="submit" class="btn btn-danger" value="Elimina Definitivamente">
                     </form>
-                    
+
                 </div>
             </div>
         </div>
