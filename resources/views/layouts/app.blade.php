@@ -48,6 +48,7 @@
                             <a class="nav-link" href="{{route("dashboard") }}">{{ __('Dashboard') }}</a>
                             <a class="nav-link" href="{{url('/projects') }}">{{ __('Projects') }}</a>
                             <a class="nav-link" href="{{url('/types') }}">{{ __('Types') }}</a>
+                            <a class="nav-link" href="{{url('/technologies') }}">{{ __('Technologies') }}</a>
                         </li>
                     </ul>
 

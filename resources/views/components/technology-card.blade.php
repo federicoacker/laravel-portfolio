@@ -1,4 +1,4 @@
-<div class="card" style="background-color:{{ $tech->color }}">
+<div class="card text-white" style="background-color:{{ $tech->color }}">
 
     <div class="card-body">
         <div class="d-flex justify-content-between align-items-center">
