@@ -24,9 +24,14 @@
             </div>
         </div>
         @endif
-        <a href="{{ $project->type ? route('types.show', $project->type) : '' }}">
-            <h3>{{ $project->type?->name ?? "Non c'è nessun tipo assegnato a questo progetto"}}</h3>
-        </a>
+        @if($project->type)
+            <div class="d-flex gap-2">
+                <h3>Tipo di Progetto: </h3>
+                <a href="{{ $project->type ? route('types.show', $project->type) : '' }}">
+                    <h3>{{ $project->type?->name ?? "Non c'è nessun tipo assegnato a questo progetto"}}</h3>
+                </a>
+            </div>
+        @endif
         <hr>
         <p>{{ $project->description }}</p>
     </div>
