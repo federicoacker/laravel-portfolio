@@ -14,6 +14,16 @@
             <div class="h3 text-secondary">{{ $project->created_at }}</div>
         </div>
         <hr>
+        @if(count($project->technologies) > 0)
+        <div class="technologies">
+            <small>Technologie usate:</small>
+            <div class="d-flex">
+                @foreach ($project->technologies as $technology)
+                    <span class="badge mx-1" style="background-color:{{ $technology->color }}; color:black">{{ $technology->name }}</span>
+                @endforeach
+            </div>
+        </div>
+        @endif
         <a href="{{ $project->type ? route('types.show', $project->type) : '' }}">
             <h3>{{ $project->type?->name ?? "Non c'è nessun tipo assegnato a questo progetto"}}</h3>
         </a>
