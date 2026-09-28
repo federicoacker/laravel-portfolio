@@ -15,6 +15,21 @@
                     </option>
                 @endforeach
             </select>
+            <div class="technologies my-2">
+                <label class="form-label">Tecnologie usate</label>
+                <div class="d-flex flex-wrap">
+                    @foreach ($technologies as $technology)
+                        <div class="group mx-2">
+                            <input type="checkbox" name="technologies[]" value="{{ $technology->id }}"
+                                id="technology-{{ $technology->id }}" {{ $project->technologies->contains($technology->id) ? 'checked' : '' }}>
+                            <label class="form-label" for="technology-{{ $technology->id }}">
+                                {{ $technology->name }}
+                            </label>
+                        </div>
+                    @endforeach
+                </div>
+
+            </div>
             <label for="description" class="form-label">Descrizione</label>
             <textarea class="form-control mb-3" name="description" id="description">{{ $project->description }}</textarea>
             <input class="btn btn-primary" type="submit" value="Modifica">
