@@ -3,6 +3,9 @@
 @section('content')
     <div class="container py-4">
         <div class="h1">{{ $project->title }}</div>
+        @if($project->image)
+            <img class="cover-image" src="{{ asset('storage/' . $project->image) }}" alt="copertina" />
+        @endif
         <div class="d-flex my-3 gap-3">
             <a class="btn btn-warning" href="{{ route('projects.edit', $project) }}">Modifica</a>
             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
@@ -15,14 +18,15 @@
         </div>
         <hr>
         @if(count($project->technologies) > 0)
-        <div class="technologies">
-            <small>Technologie usate:</small>
-            <div class="d-flex">
-                @foreach ($project->technologies as $technology)
-                    <span class="badge mx-1" style="background-color:{{ $technology->color }}; color:black">{{ $technology->name }}</span>
-                @endforeach
+            <div class="technologies">
+                <small>Technologie usate:</small>
+                <div class="d-flex">
+                    @foreach ($project->technologies as $technology)
+                        <span class="badge mx-1"
+                            style="background-color:{{ $technology->color }}; color:black">{{ $technology->name }}</span>
+                    @endforeach
+                </div>
             </div>
-        </div>
         @endif
         @if($project->type)
             <div class="d-flex gap-2">

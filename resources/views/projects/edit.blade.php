@@ -3,7 +3,7 @@
 @section('content')
     <div class="container py-4">
         <h2>Modifica il post</h2>
-        <form action="{{ route('projects.update', $project) }}" method="POST" class="form-control mb-4 d-flex flex-column">
+        <form action="{{ route('projects.update', $project) }}" method="POST" class="form-control mb-4 d-flex flex-column" enctype="multipart/form-data">
             @csrf
             @method("PUT")
             <label for="title" class="form-label">Titolo</label>
@@ -28,11 +28,15 @@
                         </div>
                     @endforeach
                 </div>
-
             </div>
             <label for="description" class="form-label">Descrizione</label>
             <textarea class="form-control mb-3" name="description" id="description">{{ $project->description }}</textarea>
-            <input class="btn btn-primary" type="submit" value="Modifica">
+            <label for="image" class="form-label">Immagine</label>
+            <input class="form-control" type="file" id="image" name="image">
+            @if($project->image)
+            <img src="{{ asset('storage/' . $project->image) }}" alt="copertina" class="cover-image"/>
+            @endif
+            <input class="btn btn-primary mt-2" type="submit" value="Modifica">
         </form>
     </div>
 @endsection

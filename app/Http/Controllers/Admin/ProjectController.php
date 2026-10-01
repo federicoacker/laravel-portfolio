@@ -7,6 +7,7 @@ use App\Models\Project;
 use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -42,6 +43,13 @@ class ProjectController extends Controller
         $newProject->tag = $data['title'] . " - " . fake()->languageCode();
         $newProject->creation_date = now();
 
+        // controllo l'immagine
+        if(array_key_exists('image', $data)){
+            //carichiamo l'immagine nello storage
+            $img_path = Storage::putFile('projects', $data['image']);
+            $newProject->image = $img_path;
+        }
+
         $newProject->save();
 
         if($request->has('technologies')){
@@ -75,10 +83,22 @@ class ProjectController extends Controller
     public function update(Request $request, Project $project)
     {
         $data = $request->all();
-
         $project->title = $data['title'];
         $project->description = $data['description'];
         $project->type_id = $data['type_id'];
+
+        if(array_key_exists('image', $data)){
+            //elimino la vecchia immagine se il post l'aveva
+            if($project->image){
+                Storage::delete($project->image);
+            }
+
+            //carico l'immagine nuova
+            $img_path = Storage::putFile('projects', $data['image']);
+
+            //aggiorno il db
+            $project->image = $img_path;
+        }
 
         $project->update();
 
@@ -96,6 +116,9 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        if($project->image){
+            Storage::delete($project->image);
+        }
         $project->delete();
         return redirect()->route('projects.index');
     }

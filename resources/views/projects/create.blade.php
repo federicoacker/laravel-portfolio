@@ -3,7 +3,7 @@
 @section('content')
     <div class="container py-4">
         <h2>Aggiungi un nuovo post</h2>
-        <form action="{{ route('projects.store') }}" method="POST" class="form-control mb-4 d-flex flex-column">
+        <form action="{{ route('projects.store') }}" method="POST" class="form-control mb-4 d-flex flex-column" enctype="multipart/form-data">
             @csrf
             <label for="title" class="form-label">Titolo</label>
             <input class="form-control" name="title" id="title" type="text">
@@ -26,11 +26,12 @@
                         </div>
                     @endforeach
                 </div>
-
             </div>
             <label for="description" class="form-label">Descrizione</label>
             <textarea class="form-control mb-3" name="description" id="description"></textarea>
             <input class="btn btn-primary" type="submit" value="Aggiungi">
+            <label for="image" class="form-label">Immagine</label>
+            <input class="form-control" type="file" id="image" name="image">
         </form>
     </div>
 @endsection
